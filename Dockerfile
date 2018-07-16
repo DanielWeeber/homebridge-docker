@@ -11,7 +11,7 @@ RUN apt-get update; \
     apt-get install -y apt-utils apt-transport-https; \
     apt-get install -y curl wget; \
     apt-get install -y libnss-mdns avahi-discover libavahi-compat-libdnssd-dev libkrb5-dev; \
-#    apt-get install -y ffmpeg; \
+    apt-get install -y ffmpeg libfdk-aac-dev; \
     apt-get install -y nano vim
 
 # Install latest Homebridge
@@ -22,10 +22,10 @@ RUN apt-get update; \
 RUN npm install -g homebridge --unsafe-perm
 
 #Install ffmpeg via sh script
-ADD install_ffmpeg_ubuntu.sh /tmp/
-RUN chmod +x /tmp/install_ffmpeg_ubuntu.sh
-RUN /tmp/install_ffmpeg_ubuntu.sh 
-RUN rm /tmp/install_ffmpeg_ubuntu.sh
+#ADD install_ffmpeg_ubuntu.sh /tmp/
+#RUN chmod +x /tmp/install_ffmpeg_ubuntu.sh
+#RUN /tmp/install_ffmpeg_ubuntu.sh 
+#RUN rm /tmp/install_ffmpeg_ubuntu.sh
 
 # MISC settings
 COPY avahi-daemon.conf /etc/avahi/avahi-daemon.conf
