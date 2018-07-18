@@ -7,11 +7,17 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TERM xterm
 
 # Install dependencies and tools
-RUN apt-get update; \
-    apt-get install -y apt-utils apt-transport-https; \
+RUN echo "deb http://www.deb-multimedia.org stretch main non-free" >> /etc/apt/sources.list
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5C808C2B65558117
+
+RUN apt-get update
+
+RUN apt-get -y install ffmpeg libfdk-aac-dev libfaac-dev
+
+RUN apt-get install -y apt-utils apt-transport-https; \
     apt-get install -y curl wget; \
     apt-get install -y libnss-mdns avahi-discover libavahi-compat-libdnssd-dev libkrb5-dev; \
-    apt-get install -y ffmpeg libfaac-dev; \
+    apt-get install -y ffmpeg libfdk-aac-dev libfaac-dev; \
     apt-get install -y nano vim
 
 # Install latest Homebridge
